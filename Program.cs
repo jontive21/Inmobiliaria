@@ -1,10 +1,16 @@
+
+using Inmobiliaria.Data;
+using Inmobiliaria.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<IRepositorioPropietario, RepositorioPropietario>();
 var app = builder.Build();
-
+Conexion.Cadena = builder.Configuration.GetConnectionString("DefaultConnection");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
