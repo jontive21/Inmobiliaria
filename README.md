@@ -27,3 +27,5 @@ Permite administrar propietarios, inmuebles, inquilinos, reservas y pagos de una
 | Usuario | Quien opera el sistema (administrador o empleado) |
 
 
+## Diagrama
+![Diagrama](img/diagrama_bd.png)
