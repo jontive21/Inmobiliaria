@@ -4,42 +4,45 @@
     ViewData["Title"] = "Inquilinos";
 }
 
-<h1>Inquilinos</h1>
+<h1>Listado de Inquilinos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Inquilino</a>
+</p>
 
 @if (TempData["Mensaje"] != null)
 {
     <div class="alert alert-success">@TempData["Mensaje"]</div>
 }
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Nuevo inquilino</a>
-</p>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>DNI</th>
-            <th>Email</th>
-            <th>Teléfono</th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.Dni)</th>
+            <th>@Html.DisplayNameFor(model => model.NombreCompleto)</th>
+            <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var i in Model)
-        {
-            <tr>
-                <td>@i.Nombre</td>
-                <td>@i.Apellido</td>
-                <td>@i.Dni</td>
-                <td>@i.Email</td>
-                <td>@i.Telefono</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@i.IdInquilino" class="btn btn-sm btn-secondary">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@i.IdInquilino" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Dni)</td>
+            <td>@Html.DisplayFor(modelItem => item.NombreCompleto)</td>
+            <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdInquilino" class="btn btn-sm btn-warning">Editar</a>
+                <a asp-action="Delete" asp-route-id="@item.IdInquilino" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

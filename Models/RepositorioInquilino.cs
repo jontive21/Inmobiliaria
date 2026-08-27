@@ -7,15 +7,14 @@ namespace Inmobiliaria.Models
         public int Alta(Inquilino p)
         {
             int id = 0;
-            string sql = @"INSERT INTO Inquilino (Nombre, Apellido, Dni, Email, Telefono)
-                            VALUES (@nombre, @apellido, @dni, @email, @telefono);
+            string sql = @"INSERT INTO Inquilino (NombreCompleto, Dni, Email, Telefono)
+                            VALUES (@nombreCompleto, @dni, @email, @telefono);
                             SELECT LAST_INSERT_ID();";
 
             using (var connection = ObtenerConexion())
             {
                 var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@nombre", p.Nombre);
-                command.Parameters.AddWithValue("@apellido", p.Apellido);
+                command.Parameters.AddWithValue("@nombreCompleto", p.NombreCompleto);
                 command.Parameters.AddWithValue("@dni", p.Dni);
                 command.Parameters.AddWithValue("@email", (object?)p.Email ?? DBNull.Value);
                 command.Parameters.AddWithValue("@telefono", (object?)p.Telefono ?? DBNull.Value);
@@ -47,8 +46,7 @@ namespace Inmobiliaria.Models
         {
             int filasAfectadas = 0;
             string sql = @"UPDATE Inquilino
-                            SET Nombre = @nombre,
-                                Apellido = @apellido,
+                            SET NombreCompleto = @nombreCompleto,
                                 Dni = @dni,
                                 Email = @email,
                                 Telefono = @telefono
@@ -57,8 +55,7 @@ namespace Inmobiliaria.Models
             using (var connection = ObtenerConexion())
             {
                 var command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@nombre", p.Nombre);
-                command.Parameters.AddWithValue("@apellido", p.Apellido);
+                command.Parameters.AddWithValue("@nombreCompleto", p.NombreCompleto);
                 command.Parameters.AddWithValue("@dni", p.Dni);
                 command.Parameters.AddWithValue("@email", (object?)p.Email ?? DBNull.Value);
                 command.Parameters.AddWithValue("@telefono", (object?)p.Telefono ?? DBNull.Value);
@@ -73,9 +70,9 @@ namespace Inmobiliaria.Models
         public IList<Inquilino> ObtenerTodos()
         {
             var lista = new List<Inquilino>();
-            string sql = @"SELECT IdInquilino, Nombre, Apellido, Dni, Email, Telefono
+            string sql = @"SELECT IdInquilino, NombreCompleto, Dni, Email, Telefono
                             FROM Inquilino
-                            ORDER BY Apellido, Nombre";
+                            ORDER BY NombreCompleto";
 
             using (var connection = ObtenerConexion())
             {
@@ -96,7 +93,7 @@ namespace Inmobiliaria.Models
         public Inquilino? ObtenerPorId(int id)
         {
             Inquilino? p = null;
-            string sql = @"SELECT IdInquilino, Nombre, Apellido, Dni, Email, Telefono
+            string sql = @"SELECT IdInquilino, NombreCompleto, Dni, Email, Telefono
                             FROM Inquilino
                             WHERE IdInquilino = @id";
 
@@ -123,8 +120,7 @@ namespace Inmobiliaria.Models
             return new Inquilino
             {
                 IdInquilino = reader.GetInt32("IdInquilino"),
-                Nombre = reader.GetString("Nombre"),
-                Apellido = reader.GetString("Apellido"),
+                NombreCompleto = reader.GetString("NombreCompleto"),
                 Dni = reader.GetString("Dni"),
                 Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString("Email"),
                 Telefono = reader.IsDBNull(reader.GetOrdinal("Telefono")) ? null : reader.GetString("Telefono"),
