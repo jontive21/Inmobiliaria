@@ -1,21 +1,26 @@
 @model Inmobiliaria.Models.Inquilino
 
 @{
-    ViewData["Title"] = "Crear Inquilino";
+    ViewData["Title"] = "Editar Inquilino";
 }
 
-<h1>Crear Inquilino</h1>
+<h1>Editar Inquilino</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-6">
-        <form asp-action="Create">
+        <!-- AQUÍ ESTÁ LA CLAVE: debe decir asp-action="Edit" -->
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <!-- Este campo oculto es OBLIGATORIO para que el POST sepa qué ID modificar -->
+            <input type="hidden" asp-for="IdInquilino" />
             
             <div class="form-group mb-3">
                 <label asp-for="Dni" class="control-label"></label>
-                <input asp-for="Dni" class="form-control" />
+                <input asp-for="Dni" class="form-control" readonly />
                 <span asp-validation-for="Dni" class="text-danger"></span>
+                <small class="text-muted">El DNI no se puede modificar.</small>
             </div>
             
             <div class="form-group mb-3">
@@ -37,7 +42,7 @@
             </div>
             
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
             </div>
         </form>
