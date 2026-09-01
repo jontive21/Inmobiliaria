@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 // Registro de repositorios (inyección de dependencias)
 builder.Services.AddScoped<IRepositorioPropietario, RepositorioPropietario>();
 builder.Services.AddScoped<IRepositorioInquilino, RepositorioInquilino>();  // <-- NUEVA LÍNEA
-
+builder.Services.AddScoped<IRepositorioInmueble, RepositorioInmueble>();
 var app = builder.Build();
 
 // Configurar la cadena de conexión después de construir la app

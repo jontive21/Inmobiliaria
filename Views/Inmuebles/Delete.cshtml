@@ -1,0 +1,47 @@
+@model Inmobiliaria.Models.Inmueble
+
+@{
+    ViewData["Title"] = "Eliminar Inmueble";
+}
+
+<h1>Eliminar Inmueble</h1>
+
+<h3>¿Está seguro que desea eliminar este inmueble?</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IdInmueble)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.IdInmueble)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Direccion)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Direccion)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DescripcionTipo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.DescripcionTipo)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NombrePropietario)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NombrePropietario)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PrecioPorDia)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.PrecioPorDia)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Disponible)</dt>
+        <dd class="col-sm-9">
+            @if (Model.Disponible)
+            {
+                <span class="badge bg-success">Disponible</span>
+            }
+            else
+            {
+                <span class="badge bg-danger">No Disponible</span>
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdInmueble" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+    </form>
+</div>

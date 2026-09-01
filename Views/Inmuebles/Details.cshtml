@@ -1,0 +1,62 @@
+@model Inmobiliaria.Models.Inmueble
+
+@{
+    ViewData["Title"] = "Detalles del Inmueble";
+}
+
+<h1>Detalles del Inmueble</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IdInmueble)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.IdInmueble)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Direccion)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Direccion)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DescripcionTipo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.DescripcionTipo)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NombrePropietario)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NombrePropietario)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Cupo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Cupo) personas</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Coordenadas)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Coordenadas)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PrecioPorDia)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.PrecioPorDia)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ImagenPortada)</dt>
+        <dd class="col-sm-9">
+            @if (!string.IsNullOrEmpty(Model.ImagenPortada))
+            {
+                <img src="@Model.ImagenPortada" alt="Imagen del inmueble" style="max-width: 300px;" />
+            }
+            else
+            {
+                <span>Sin imagen</span>
+            }
+        </dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Disponible)</dt>
+        <dd class="col-sm-9">
+            @if (Model.Disponible)
+            {
+                <span class="badge bg-success">Disponible</span>
+            }
+            else
+            {
+                <span class="badge bg-danger">No Disponible</span>
+            }
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdInmueble" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>
