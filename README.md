@@ -5,7 +5,7 @@ Sistema de gestión de alquileres temporales, desarrollado como proyecto de la c
 ## Integrantes del Grupo
 - **ontiveros José** - (GitHub: jontive21)
 - **Roldan Saúl** - (GitHub: saul28roldan-pixel)
-- **Orozco Miguel** - (GitHub: [su_usuario])
+- **Orozco Miguel** - (GitHub: BLACK1895)
 
 ## Descripción
 Permite administrar propietarios, inmuebles, inquilinos, reservas y pagos de una inmobiliaria dedicada a alquileres temporales. Una de las reglas centrales del sistema es que un inmueble no puede tener dos reservas que se superpongan en el tiempo.
