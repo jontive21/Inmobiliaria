@@ -6,15 +6,18 @@ namespace Inmobiliaria.Controllers
 {
     public class InmueblesController : Controller
     {
+        private readonly IRepositorioTipoInmueble repositorioTipoInmueble;
         private readonly IRepositorioInmueble repositorioInmueble;
+
         private readonly IRepositorioPropietario repositorioPropietario;
         // Nota: cuando tu compañero tenga listo el repositorio de TipoInmueble, 
         // agregaremos aquí su interfaz. Por ahora usaremos una lista estática.
 
-        public InmueblesController(IRepositorioInmueble repositorioInmueble, IRepositorioPropietario repositorioPropietario)
+        public InmueblesController(IRepositorioInmueble repositorioInmueble, IRepositorioPropietario repositorioPropietario, IRepositorioTipoInmueble repositorioTipoInmueble) 
         {
             this.repositorioInmueble = repositorioInmueble;
             this.repositorioPropietario = repositorioPropietario;
+            this.repositorioTipoInmueble =  repositorioTipoInmueble; // Inicialización temporal
         }
 
         // GET: Inmuebles
@@ -148,15 +151,12 @@ namespace Inmobiliaria.Controllers
         Text = $"{p.Nombre} {p.Apellido}"
     }).ToList();
     ViewBag.Propietarios = listaPropietarios;
-
-    // Dropdown de Tipos de Inmueble
-    ViewBag.Tipos = new List<SelectListItem>
-    {
-        new SelectListItem { Value = "1", Text = "Casa" },
-        new SelectListItem { Value = "2", Text = "Departamento" },
-        new SelectListItem { Value = "3", Text = "Monoambiente" },
-        new SelectListItem { Value = "4", Text = "Loft" }
-    };
+var tipos = repositorioTipoInmueble.ObtenerTodos();
+ViewBag.Tipos = tipos.Select(t => new SelectListItem
+{
+    Value = t.IdTipo.ToString(),
+    Text = t.Descripcion
+}).ToList();
 }
     }
 }    
